@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tableau de bord</h1>
+        <a href="{{path('app_add_competition')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Ajouter une compétition</a>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+        <!-- Area Chart -->
+        {% for competition in competitions %}
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary d-flex align-items-center"><span>{{competition.name}}</span>{% if competition.isActive %}<span class="badge badge-success text-xs ml-2">En cours</span>{% endif %}</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div>COMPETITION</div>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-success mr-2" href="{{path('app_launch_competition', {id: competition.id})}}"><i class="fas fa-eye fa-solid fa-sm text-white-50"></i></a>
+                    <a class="btn btn-warning" href="{{path('app_edit_competition', {id: competition.id})}}"><i class="fas fa-pen fa-light fa-sm text-white-50"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}        
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Ajouter une compétition</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+                {% if form_errors(form) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.name) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}

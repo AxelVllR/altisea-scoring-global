@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Editer la compétition - <strong>{{ competition.name }}</strong></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+                {% if form_errors(form) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.name) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+
+        <hr class="divider my-0 col-12 mt-5 mb-5">
+
+        <div class="col-12 d-flex justify-content-between">
+            <h1 class="h3 mb-0 text-gray-800">WOD</h1>
+            <a class="btn btn-success" href="{{path('app_add_wod', {competitionId: competition.id})}}">Ajouter un WOD</a>
+        </div>
+
+        {% for wod in wods %}
+            <div class="col-md-4">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">{{wod.name}}</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div>{{ wod.description }}</div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a class="btn btn-warning" href="{{path('app_edit_wod', {id: wod.id})}}"><i class="fas fa-pen fa-light fa-sm text-white-50"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
